@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
-import netflixLogo from "../utils/netflixLogo.png";
-import { Link } from "react-router-dom";
 import { regexValidationPasswordForSignUp } from "../utils/validateSignIn";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import netflixLogo from "../utils/netflixLogo.png";
+import { useNavigate } from "react-router-dom";
 
-const SetUpPassword = () => {
+const SetUpPage = () => {
+  const navigate = useNavigate();
   const [validationMsg, setValidationMsg] = useState(null);
   const emailIdForSignUp = localStorage.getItem('emailId');
-  console.log(emailIdForSignUp);
   const regexValidationPasswordFn = () => {
     if (password.current.value === confirmPassword.current.value) {
       setValidationMsg(
@@ -17,13 +17,11 @@ const SetUpPassword = () => {
       createUserWithEmailAndPassword(auth, emailIdForSignUp, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode+errorMessage);
-          // ..
         });
     } else if (password.current.value !== confirmPassword.current.value){
       setValidationMsg("Both fields doesnot match");
@@ -35,11 +33,8 @@ const SetUpPassword = () => {
     <>
       <div className="w-full py-4 flex justify-between border border-gray-300 border-2px shadow-lg">
         <a href="/">
-          <img src={netflixLogo} alt="logo" className="w-56 px-2" />
+          <img src={netflixLogo} alt="logo" className="w-56 px-2 cursor-pointer" />
         </a>
-        <Link to="/" className="flex items-center text-lg px-8">
-          <p>Sign In</p>
-        </Link>
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -72,4 +67,4 @@ const SetUpPassword = () => {
   );
 };
 
-export default SetUpPassword;
+export default SetUpPage;
