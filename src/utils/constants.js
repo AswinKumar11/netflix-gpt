@@ -6,4 +6,4 @@ export const OPTIONS = {
     }
   };
 
-export const POSTERURL = "https://image.tmdb.org/t/p/original";
+export const POSTERURL = "https://image.tmdb.org/t/p/w200";

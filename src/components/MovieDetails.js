@@ -6,8 +6,8 @@ const MovieDetails = () => {
   if (typeof previewMovieData == "undefined") return;
   const { title, overview, backdrop_path } = previewMovieData?.[0];
   return (
-    <div className="mt-[25%] p-4 absolute z-20 text-white w-4/12">
-      <h1 className="font-extrabold text-4xl hover:text-5xl">{title}</h1>
+    <div className="mt-[15%] p-4 absolute z-20 text-gray-400 w-4/12 m-4">
+      <h1 className="font-extrabold text-4xl hover:text-5xl text-white">{title}</h1>
       <img
         className="w-52 hover:w-60"
         src={POSTERURL+backdrop_path}

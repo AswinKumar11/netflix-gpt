@@ -5,6 +5,7 @@ import SetUpPage from "./components/SetUpPage";
 import { Provider} from "react-redux";
 import appStore from "./utils/appStore";
 import Browse from "./components/Browse";
+import MoviePage from "./components/MoviePage";
 
 const appRouter = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/browse",
     element: <Browse />,
+  },
+  {
+    path: "/browse/:id",
+    element: <MoviePage />,
   },
   {
     path: "/signUp",

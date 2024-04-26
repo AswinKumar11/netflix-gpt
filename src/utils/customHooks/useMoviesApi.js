@@ -5,8 +5,7 @@ import { addMoviesList, addPreviewMovie } from "../moviesListSlice";
 
 const useMoviesApi = () => {
   const dispatch = useDispatch();
-  async function previewMovie (preview){
-    const id = preview.id;
+  async function previewMovie (id){
     const data = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, OPTIONS);
     const json = await data.json();
     const trailer = json.results.filter(e=> e.type === "Trailer");
@@ -18,7 +17,7 @@ const useMoviesApi = () => {
       OPTIONS
     );
     const json = await data.json();
-    previewMovie(json.results[0])
+    previewMovie(json.results[0].id);
     dispatch(addMoviesList(json.results));
   }
   useEffect(() => {
