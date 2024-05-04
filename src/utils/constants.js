@@ -7,3 +7,5 @@ export const OPTIONS = {
   };
 
 export const POSTERURL = "https://image.tmdb.org/t/p/w200";
+
+export const OPENAI_KEY = "sk-proj-hMsBiae734s1Bq3nHWfuT3BlbkFJZZYSe6XF1MZvlf60zwFS";

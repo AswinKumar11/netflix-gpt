@@ -7,6 +7,7 @@ import MovieList from "./MovieList.js";
 import usePopularMoviesApi from "../utils/customHooks/usePopularMoviesApi.js";
 import useUpcomingMoviesApi from "../utils/customHooks/useUpcomingMoviesApi.js";
 import useTopRatedMoviesApi from "../utils/customHooks/useTopRatedMoviesApi.js";
+import SearchPage from "./SearchPage.js";
 
 const Browse = () => {
   useMoviesApi();
@@ -14,13 +15,20 @@ const Browse = () => {
   useUpcomingMoviesApi();
   useTopRatedMoviesApi();
   const movieTrailer = useSelector((store) => store.movies.previewMovie);
+  const searchPageToggle = useSelector((appStore) => appStore?.gpt?.isSearchPage);
   const previewVideoKey = movieTrailer?.[0]?.key;
   return (
     <div>
       <Header />
-      <MovieDetails />
-      <Preview previewVideoKey={previewVideoKey} />
-      <MovieList />
+      {searchPageToggle ? (
+        <SearchPage />
+      ) : (
+        <>
+          <MovieDetails />
+          <Preview previewVideoKey={previewVideoKey} />
+          <MovieList />
+        </>
+      )}
     </div>
   );
 };
